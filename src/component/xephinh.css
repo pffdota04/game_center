@@ -1,0 +1,6 @@
+.game-block {
+  width: 30px;
+  height: 30px;
+  background-color: cornsilk;
+  border: solid 1px rgb(224, 224, 224);
+}

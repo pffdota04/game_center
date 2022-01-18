@@ -7,12 +7,7 @@ import loto from "./assets/images/loto.jpg";
 import xoso from "./assets/images/xoso.jpg";
 import xephinh from "./assets/images/xephinh.jpg";
 import snake from "./assets/images/snake.jpg";
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 
 import RanSanMoi from "./component/RanSanMoi";
 import DuaXe from "./component/DuaXe";

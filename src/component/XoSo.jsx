@@ -45,15 +45,35 @@ const XoSo = (props) => {
     setPaper((prev) => [...prev, makePaper()]);
   };
 
+  const randomPaper = () => {
+    let a = paper.length;
+    console.log(paper);
+
+    let newpaper = [];
+    for (let i = 0; i < a; i++) {
+      newpaper.push(makePaper());
+    }
+    console.log(newpaper);
+    setPaper(newpaper);
+  };
+
   const LottPaper = (location, name) => {
-    console.log(location);
-    return location.map((e) => {
+    // console.log(location);
+    return location.map((e, i) => {
       console.log(e);
-      return (
-        <div className="bg-primary d-inline-block me-1 p-1 rounded-circle text-light ps-3 pe-3">
-          {e}
-        </div>
-      );
+      console.log(result[i]);
+      if (result[i] == e)
+        return (
+          <div className="bg-danger d-inline-block me-1 p-1 rounded-circle text-light ps-3 pe-3">
+            {e}
+          </div>
+        );
+      else
+        return (
+          <div className="bg-primary d-inline-block me-1 p-1 rounded-circle text-light ps-3 pe-3">
+            {e}
+          </div>
+        );
     });
   };
 
@@ -64,7 +84,7 @@ const XoSo = (props) => {
         Quay số
       </div>
       <div className="col-12 mt-1">
-        {history.length !== 1 && ("Kỳ " + (history.length-1)) + ":"}
+        {history.length !== 1 && "Kỳ " + (history.length - 1) + ":"}
         {result.map((e) => (
           <div className="bg-danger d-inline-block me-1 p-1 rounded-circle text-light ps-3 pe-3">
             {e + " "}
@@ -85,6 +105,9 @@ const XoSo = (props) => {
           <div className="border border-dark p-2">
             <div className="btn btn-danger me-1" onClick={() => setPaper([])}>
               Xóa hết
+            </div>
+            <div className="btn btn-warning me-1" onClick={() => randomPaper()}>
+              Trộn số
             </div>
             <div className="btn btn-primary" onClick={() => morePaper()}>
               Mua thêm

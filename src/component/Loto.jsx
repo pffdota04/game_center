@@ -107,6 +107,16 @@ const Loto = (props) => {
     setPaper((prev) => [...prev, makePaper()]);
   };
 
+  const randomPaper = () => {
+    let a = paper.length;
+
+    let newpaper = [];
+    for (let i = 0; i < a; i++) {
+      newpaper.push(makePaper());
+    }
+    setPaper(newpaper);
+  };
+
   return (
     <div>
       <h1>Lô tô</h1>
@@ -141,6 +151,12 @@ const Loto = (props) => {
         ))}
         <div className={"col-12 col-sm-6 col-lg-4 mb-3 "}>
           <div className="border border-dark p-2">
+            <div className="btn btn-danger me-1" onClick={() => setPaper([])}>
+              Xóa hết
+            </div>
+            <div className="btn btn-warning me-1" onClick={() => randomPaper()}>
+              Trộn số
+            </div>
             <div className="btn btn-primary" onClick={() => morePaper()}>
               Tạo thêm
             </div>
