@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Slider from "react-slick";
 
@@ -13,13 +12,13 @@ import {
   Link,
   Route,
   Routes,
-  useLocation,
 } from "react-router-dom";
 
 import RanSanMoi from "./component/RanSanMoi";
 import DuaXe from "./component/DuaXe";
 import XepHinh from "./component/XepHinh";
 import Loto from "./component/Loto";
+import XoSo from "./component/XoSo";
 
 function App() {
   const settings = {
@@ -73,6 +72,7 @@ function App() {
             <Route path="/dua-xe" element={<DuaXe />} />
             <Route path="/xep-hinh" element={<XepHinh />} />
             <Route path="/lo-to" element={<Loto />} />
+            <Route path="/xo-so" element={<XoSo />} />
 
             <Route path="/" element={<div> AHAHAHA</div>} />
           </Routes>
