@@ -18,8 +18,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run copy",
     "test": "react-scripts test",
+    "copy": "node -e \"const fs = require('fs'); const data = fs.readFileSync('_redirects'); fs.writeFileSync('build/_redirects', data);\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
