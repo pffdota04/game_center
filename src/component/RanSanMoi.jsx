@@ -3,6 +3,7 @@ import "./ransanmoi.css";
 
 let fixDirect = "right";
 let fixGameOver = false;
+let speed = 150;
 
 const RanSanMoi = () => {
   const getRandomColor = () => {
@@ -32,11 +33,11 @@ const RanSanMoi = () => {
   const handleKeyDown = (event) => {
     // console.log(event.keyCode);
 
-    // if spacebar is pressed to run a new game
-    if (fixGameOver && event.keyCode === 32) {
-      resetGame();
-      return;
-    }
+    // // if spacebar is pressed to run a new game
+    // if (fixGameOver && event.keyCode === 32) {
+    //   resetGame();
+    //   return;
+    // }
 
     if (directionChanged) return;
 
@@ -62,6 +63,25 @@ const RanSanMoi = () => {
     setDirectionChanged(true);
   };
 
+  const handleButton = (button) => {
+    switch (button) {
+      case "A":
+        goLeft();
+        break;
+      case "W":
+        goUp();
+        break;
+      case "D":
+        goRight();
+        break;
+      case "S":
+        goDown();
+        break;
+      default:
+    }
+    setDirectionChanged(true);
+  };
+
   useEffect(async () => {
     initGame();
     window.addEventListener("keydown", handleKeyDown);
@@ -77,10 +97,12 @@ const RanSanMoi = () => {
   }, [startGame]);
 
   useEffect(() => {
-    // gameLoop();
-  }, [fixDirect]);
+    if (score > 40) speed = 35;
+    else if (score > 30) speed = 50;
+    else if (score > 15) speed = 70;
+    else if (score > 5) speed = 100;
+  }, [score]);
 
-  console.log("*  * * * ** * *  " + fixDirect);
 
   const initGame = () => {
     // Game size initialization
@@ -89,7 +111,7 @@ const RanSanMoi = () => {
       document.getElementById("GameBoard").parentElement.offsetWidth *
       (percentageWidth / 100);
     width -= width % 30;
-    if (width < 30) width = 30;
+    if (width < 300) width = 300;
     // width = 350;
     let height = (width / 3) * 2;
 
@@ -111,15 +133,17 @@ const RanSanMoi = () => {
 
     // apple position initialization
     let appleXpos =
-      Math.floor(Math.random() * ((width - blockWidth) / blockWidth + 1)) *
+      Math.floor(Math.random() * ((width - 2 * blockWidth) / blockWidth + 1)) *
       blockWidth;
     let appleYpos =
-      Math.floor(Math.random() * ((height - blockHeight) / blockHeight + 1)) *
-      blockHeight;
+      Math.floor(
+        Math.random() * ((height - 2 * blockHeight) / blockHeight + 1)
+      ) * blockHeight;
     while (appleYpos === snake[0].Ypos) {
       appleYpos =
-        Math.floor(Math.random() * ((height - blockHeight) / blockHeight + 1)) *
-        blockHeight;
+        Math.floor(
+          Math.random() * ((height - 2 * blockHeight) / blockHeight + 1)
+        ) * blockHeight;
     }
 
     setWidth(width);
@@ -130,22 +154,21 @@ const RanSanMoi = () => {
     setSnake(snake);
     setApple({ Xpos: appleXpos, Ypos: appleYpos });
     setStartGame(startGame + 1);
+    speed = 150;
   };
 
   const gameLoop = () => {
     let timeoutId = setTimeout(() => {
       if (fixGameOver === false && snake.length !== 0) {
-        console.log("let move");
-        console.log(fixDirect);
         moveSnake();
         tryToEatSnake();
         tryToEatApple();
         setDirectionChanged(false);
         gameLoop();
       } else {
-        console.log("----GAME IS OVER----");
+        // console.log("----GAME IS OVER----");
       }
-    }, 100);
+    }, speed);
     setTimeoutId(timeoutId);
   };
 
@@ -170,18 +193,21 @@ const RanSanMoi = () => {
 
     // apple position reset
     apple1.Xpos =
-      Math.floor(Math.random() * ((width - blockWidth) / blockWidth + 1)) *
+      Math.floor(Math.random() * ((width - 2 * blockWidth) / blockWidth + 1)) *
       blockWidth;
     apple1.Ypos =
-      Math.floor(Math.random() * ((height - blockHeight) / blockHeight + 1)) *
-      blockHeight;
+      Math.floor(
+        Math.random() * ((height - 2 * blockHeight) / blockHeight + 1)
+      ) * blockHeight;
     while (isAppleOnSnake(apple1.Xpos, apple1.Ypos)) {
       apple1.Xpos =
-        Math.floor(Math.random() * ((width - blockWidth) / blockWidth + 1)) *
-        blockWidth;
+        Math.floor(
+          Math.random() * ((width - 2 * blockWidth) / blockWidth + 1)
+        ) * blockWidth;
       apple1.Ypos =
-        Math.floor(Math.random() * ((height - blockHeight) / blockHeight + 1)) *
-        blockHeight;
+        Math.floor(
+          Math.random() * ((height - 2 * blockHeight) / blockHeight + 1)
+        ) * blockHeight;
     }
 
     setSnake(snake1);
@@ -189,6 +215,7 @@ const RanSanMoi = () => {
     setDirection("right");
     fixDirect = "right";
     fixGameOver = false;
+    speed = 150;
     setDirectionChanged(false);
     setIsGameOver(false);
     setGameLoopTimeout(50);
@@ -237,18 +264,21 @@ const RanSanMoi = () => {
 
       // create another apple
       apple1.Xpos =
-        Math.floor(Math.random() * ((width - blockWidth) / blockWidth + 1)) *
-        blockWidth;
+        Math.floor(
+          Math.random() * ((width - 2 * blockWidth) / blockWidth + 1)
+        ) * blockWidth;
       apple1.Ypos =
-        Math.floor(Math.random() * ((height - blockHeight) / blockHeight + 1)) *
-        blockHeight;
+        Math.floor(
+          Math.random() * ((height - 2 * blockHeight) / blockHeight + 1)
+        ) * blockHeight;
       while (isAppleOnSnake(apple1.Xpos, apple1.Ypos)) {
         apple1.Xpos =
-          Math.floor(Math.random() * ((width - blockWidth) / blockWidth + 1)) *
-          blockWidth;
+          Math.floor(
+            Math.random() * ((width - 2 * blockWidth) / blockWidth + 1)
+          ) * blockWidth;
         apple1.Ypos =
           Math.floor(
-            Math.random() * ((height - blockHeight) / blockHeight + 1)
+            Math.random() * ((height - 2 * blockHeight) / blockHeight + 1)
           ) * blockHeight;
       }
 
@@ -307,81 +337,76 @@ const RanSanMoi = () => {
     // let blockWidth = blockWidth;
     let snake1 = snake;
     snake1[0].Xpos =
-      snake[0].Xpos <= 0 ? width - blockWidth : snake[0].Xpos - blockWidth;
+      snake[0].Xpos <= 0 ? width - 2 * blockWidth : snake[0].Xpos - blockWidth;
     setSnake(snake1);
   };
 
   const moveHeadUp = () => {
-    console.log("Please UPPP");
     // let height = height;
     // let blockHeight = blockHeight;
     let snake1 = snake;
     snake1[0].Ypos =
-      snake[0].Ypos <= 0 ? height - blockHeight : snake[0].Ypos - blockHeight;
+      snake[0].Ypos <= 0
+        ? height - 2 * blockHeight
+        : snake[0].Ypos - blockHeight;
     setSnake(snake1);
   };
 
   const moveHeadRight = () => {
-    console.log("Please RIGHTT");
 
     let width1 = width;
     let blockWidth1 = blockWidth;
     let snake1 = snake;
     snake1[0].Xpos =
-      snake1[0].Xpos >= width1 - blockWidth1 ? 0 : snake1[0].Xpos + blockWidth1;
+      snake1[0].Xpos >= width1 - 2 * blockWidth1
+        ? 0
+        : snake1[0].Xpos + blockWidth1;
     setSnake(snake1);
   };
 
   const moveHeadDown = () => {
-    console.log("Please DOWNNNN");
     // let height1 = height;
     // let blockHeight1 = blockHeight;
     let snake1 = snake;
     snake1[0].Ypos =
-      snake1[0].Ypos >= height - blockHeight ? 0 : snake[0].Ypos + blockHeight;
+      snake1[0].Ypos >= height - 2 * blockHeight
+        ? 0
+        : snake[0].Ypos + blockHeight;
     setSnake(snake);
   };
 
   const goLeft = () => {
     let newDirection = direction === "right" ? "right" : "left";
     setDirection(newDirection);
-    console.log(".. " + fixDirect);
     fixDirect = fixDirect === "right" ? "right" : "left";
-    console.log(".=>" + fixDirect);
   };
 
   const goUp = () => {
     let newDirection = direction === "down" ? "down" : "up";
-    console.log(".. " + fixDirect);
     fixDirect = fixDirect === "down" ? "down" : "up";
-    console.log(".=>" + fixDirect);
 
     setDirection(newDirection);
   };
 
   const goRight = () => {
     let newDirection = direction === "left" ? "left" : "right";
-    console.log(".. " + fixDirect);
     fixDirect = fixDirect === "left" ? "left" : "right";
-    console.log(".=>" + fixDirect);
 
     setDirection(newDirection);
   };
 
   const goDown = () => {
     let newDirection = direction === "up" ? "up" : "down";
-    console.log(".. " + fixDirect);
     fixDirect = fixDirect === "up" ? "up" : "down";
-    console.log(".=>" + fixDirect);
     setDirection(newDirection);
   };
 
   return (
     <div>
-      {fixDirect}
       {fixGameOver == true ? (
         <div>
           <h1> End Game</h1>
+          <p>SCORE: {score}</p>
           <div className="btn btn-primary" onClick={() => resetGame()}>
             Play again
           </div>
@@ -394,26 +419,40 @@ const RanSanMoi = () => {
             height: height,
             borderWidth: width / 50,
           }}
+          className={"level-" + speed}
         >
           {snake.map((snakePart, index) => {
-            return (
-              <div
-                key={index}
-                className="Block"
-                style={{
-                  width: blockWidth,
-                  height: blockHeight,
-                  left: snakePart.Xpos,
-                  top: snakePart.Ypos,
-                  background: snakeColor,
-                }}
-              >
-                {index}
-              </div>
-            );
+            if (index === 0)
+              return (
+                <div
+                  key={index}
+                  className="Block rounded-circle border border-danger border-2"
+                  style={{
+                    width: blockWidth,
+                    height: blockHeight,
+                    left: snakePart.Xpos,
+                    top: snakePart.Ypos,
+                    background: snakeColor,
+                  }}
+                ></div>
+              );
+            else
+              return (
+                <div
+                  key={index}
+                  className="Block border border-danger border-2"
+                  style={{
+                    width: blockWidth,
+                    height: blockHeight,
+                    left: snakePart.Xpos,
+                    top: snakePart.Ypos,
+                    background: snakeColor,
+                  }}
+                ></div>
+              );
           })}
           <div
-            className="Block"
+            className="Block border border-danger border-2"
             style={{
               width: blockWidth,
               height: blockHeight,
@@ -425,8 +464,43 @@ const RanSanMoi = () => {
           <div id="Score" style={{ fontSize: width / 20 }}>
             SCORE: {score}
           </div>
+          {/* <p>Speed: {speed} {width}</p> */}
         </div>
       )}
+      <div className="row mt-5">
+        <div className="col-12">
+          <div
+            className="buttonSnake btn btn-outline-warning m-1 ps-5 pe-5 pt-3 pb-3"
+            onClick={() => handleButton("W")}
+          >
+            W
+          </div>
+        </div>
+        <div className="col-6 ">
+          <div
+            className="buttonSnake btn btn-outline-warning m-2 ps-5 pe-5 pt-3 pb-3"
+            onClick={() => handleButton("A")}
+          >
+            A
+          </div>
+        </div>
+        <div className="col-6 ">
+          <div
+            className="buttonSnake btn btn-outline-warning m-2 ps-5 pe-5 pt-3 pb-3"
+            onClick={() => handleButton("D")}
+          >
+            D
+          </div>
+        </div>
+        <div className="col-12 ">
+          <div
+            className="buttonSnake btn btn-outline-warning m-1 ps-5 pe-5 pt-3 pb-3"
+            onClick={() => handleButton("S")}
+          >
+            S
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

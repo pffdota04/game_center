@@ -1,35 +1,55 @@
 #GameBoard {
-	position: relative;
-	margin: auto;
-	border-style: solid;
+  position: relative;
+  margin: auto;
+  border-style: solid;
 }
 
 #GameBoard .Block {
-	position: absolute;
+  position: absolute;
 }
 
 #GameBoard #GameOver {
-	text-align: center;
-	height: 100%;
-	flex-direction: column;
-	display: flex;
-	justify-content: space-around;
+  text-align: center;
+  height: 100%;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
 }
 
 #GameBoard #Score {
-	position: relative;
-	top: 105%;
-	text-align: center;
-	font-weight: bold;
+  position: relative;
+  top: 105%;
+  text-align: center;
+  font-weight: bold;
 }
 
 #GameBoard #GameOverText {
-	color: #ca0000;
-	font-weight: bold;
-	text-decoration-line: underline;
+  color: #ca0000;
+  font-weight: bold;
+  text-decoration-line: underline;
 }
 
 #GameBoard #PressSpaceText {
-	color: #2e7ecb;
-	font-weight: bold;
+  color: #2e7ecb;
+  font-weight: bold;
+}
+
+.level-100 {
+  background-color: rgb(253, 234, 206);
+}
+
+.level-70 {
+  background-color: rgb(211, 255, 78);
+}
+
+.level-50 {
+  background-color: rgb(255, 145, 0);
+}
+
+.level-35 {
+  background-color: rgb(213, 0, 0);
+}
+
+.buttonSnake{
+
 }
