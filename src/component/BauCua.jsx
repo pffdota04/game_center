@@ -366,29 +366,34 @@ const BauCua = (props) => {
       <p>Người chơi: </p>
       <div className="row">
         <div className="col-6">
-          <div className="user-baucua bg-primary" /> : {user1[0]} (
-          {user1[1] < 0 ? "" : "+"} {user1[1]})
+          <div className="user-baucua bg-primary" /> :
+          <strong> {user1[0]} </strong>{" "}
+          <span className={user1[1] < 0 ? " text-danger" : " text-success"}>
+            ( {user1[1]}){" "}
+          </span>
         </div>
         <div className="col-6">
-          <div className="user-baucua bg-warning" /> : {user2[0]} (
-          {user2[1] < 0 ? "" : "+"} {user2[1]})
+          <div className="user-baucua bg-warning" /> :
+          <strong> {user2[0]} </strong>{" "}
+          <span className={user2[1] < 0 ? " text-danger" : " text-success"}>
+            ( {user2[1]}){" "}
+          </span>
         </div>
         <div className="col-6">
-          <div className="user-baucua bg-dark" /> : {user3[0]} (
-          {user3[1] < 0 ? "" : "+"} {user3[1]})
+          <div className="user-baucua bg-dark" /> :<strong> {user3[0]} </strong>{" "}
+          <span className={user3[1] < 0 ? " text-danger" : " text-success"}>
+            ({user3[1]}){" "}
+          </span>
         </div>
         <div className="col-6">
-          <div className="user-baucua bg-success" /> : {user4[0]} (
-          {user4[1] < 0 ? "" : "+"} {user4[1]})
+          <div className="user-baucua bg-success" /> :
+          <strong> {user4[0]} </strong>{" "}
+          <span className={user4[1] < 0 ? " text-danger" : " text-success"}>
+            ( {user4[1]}){" "}
+          </span>
         </div>
       </div>
       <hr />
-      <div className="bg-danger text-light">
-        {finishResult}...
-        {kq1} __
-        {kq2} __
-        {kq3} __
-      </div>
     </div>
   );
 };
