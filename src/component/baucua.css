@@ -1,0 +1,70 @@
+.baucua-icon-list {
+  display: inline-block;
+  width: 150px;
+  height: 450px;
+  overflow: hidden;
+  background: #fff url("./../assets//images/baucua.png");
+  will-change: backgroundPosition;
+  transition: 0.3s background-position ease-in-out;
+  transform: translateZ(0);
+}
+
+.snip-and-button{
+  /* width: fit-content; */
+}
+
+.spinner-container {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  transition: 0.3s transform;
+}
+.spinner-container::after {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 150px;
+  top: 150px;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: rgba(255, 0, 0, 0.1);
+  border: 5px dashed red;
+}
+.gradient-fade {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: 500px;
+  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    rgba(64, 64, 64, 1) 0%,
+    rgba(64, 64, 64, 0) 10%,
+    rgba(64, 64, 64, 0) 90%,
+    rgba(64, 64, 64, 1) 100%
+  );
+}
+
+.buacua-item {
+  min-width: 150px;
+  background: rgba(221, 255, 0, 0.1);
+  margin: 5px;
+}
+
+.buacua-item img {
+  width: 140px;
+}
+
+.user-baucua{
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+}

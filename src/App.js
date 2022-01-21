@@ -7,6 +7,7 @@ import loto from "./assets/images/loto.jpg";
 import xoso from "./assets/images/xoso.jpg";
 import xephinh from "./assets/images/xephinh.jpg";
 import snake from "./assets/images/snake.jpg";
+import baucua from "./assets/images/baucua.jpg";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 
 import RanSanMoi from "./component/RanSanMoi";
@@ -14,6 +15,7 @@ import DuaXe from "./component/DuaXe";
 import XepHinh from "./component/XepHinh";
 import Loto from "./component/Loto";
 import XoSo from "./component/XoSo";
+import BauCua from "./component/BauCua";
 
 function App() {
   const settings = {
@@ -40,6 +42,7 @@ function App() {
     { name: "Bắn súng", img: tank, link: "ban-sung" },
     { name: "Lô tô", img: loto, link: "lo-to" },
     { name: "Xổ số", img: xoso, link: "xo-so" },
+    { name: "Bầu cua", img: baucua, link: "bau-cua" },
   ];
 
   return (
@@ -68,6 +71,7 @@ function App() {
             <Route path="/xep-hinh" element={<XepHinh />} />
             <Route path="/lo-to" element={<Loto />} />
             <Route path="/xo-so" element={<XoSo />} />
+            <Route path="/bau-cua" element={<BauCua />} />
 
             <Route path="/" element={<div> AHAHAHA</div>} />
           </Routes>
